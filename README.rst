@@ -1,9 +1,7 @@
-Template for the Read the Docs tutorial
+5160 Documentation
 =======================================
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
+This repository contains the necessary documentation for new FRC 5160 members.
+To get started, go to :ref:`https://5160-docs.readthedocs.io/en/latest/`.
 
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
+To contribute, go to :ref:`https://docs.readthedocs.io/en/stable/tutorial/`.
