@@ -1,3 +1,4 @@
 site_name: 5160 Documentation
-nav:
-  - Home: index.md
+
+theme:
+  name: readthedocs
