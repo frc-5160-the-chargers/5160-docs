@@ -182,6 +182,24 @@ functions that dont return anything.
 In java, you use ```Function<InputType, ReturnType>, BiFunction<...>, ...```, 
 ```Supplier<ReturnType```and ```Consumer<InputType>, BiConsumer<...>, ...```.
 
+In kotlin, you can also use an external "block" to represent a lambda
+if it is the last argument of a class or function. For instance:
+
+``` 
+fun hello(a: () -> Unit){
+    a()
+}
+
+// both of these are valid
+hello({ println("hi") })
+hello { 
+    println("hi") 
+}
+```
+
+You may also come across [Inline Functions](https://kotlinlang.org/docs/inline-functions.html)
+in our codebase. Don't worry about them for now; just treat them like
+regular functions.
 
 ### Singletons
 

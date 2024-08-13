@@ -2,22 +2,3 @@ site_name: 5160 Documentation
 
 theme:
   name: readthedocs
-
-nav:
-  - 'Home': 'index.md'
-  - 'Software':
-    - 'Getting Started':
-        - 'Introduction to Software': 'welcome.md'
-        - 'deploying-robot-code.md'
-        - 'kotlin-and-java.md'
-        - 'kmeasure.md'
-        - 'chargerlib.md'
-    - 'Command Based Programming':
-        - 'Intro to Command-Based': 'introduction.md'
-        - 'subsystems.md'
-        - 'build-command.md'
-        - 'reading-input.md'
-        - 'command-extensions.md'
-    - 'Controlling Hardware':
-        - 'motors-and-encoders.md'
-        - 'gyroscopes.md'

@@ -2,7 +2,7 @@
 
 Chargerlib is a custom library that holds code that we reuse from year-to-year.
 
-## Features:
+## Features
 - Classes for some common subsystems (e.g. drivetrains)
 - Support for units in all values provided through [KMeasure](https://github.com/battery-staple/KMeasure)
 - These units also take advantage of kotlin inline classes, which means that during runtime, they are mostly represented as double's: this reduces runtime overhead.

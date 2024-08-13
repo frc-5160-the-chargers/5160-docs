@@ -1,4 +1,4 @@
-# Intro to Command-based Programming
+# Intro to Command-Based Programming
 
 Command-based programming is the most popular programming framework for FRC teams
 due to it's ease of use and simplicity. 
