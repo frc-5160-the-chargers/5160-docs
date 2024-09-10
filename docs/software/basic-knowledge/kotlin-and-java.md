@@ -7,27 +7,51 @@ However, kotlin is also a supported language because fundamentally,
 it is the same language as java; as both languages eventually compile to
 the same underlying code. This means that kotlin can call java, and java can call kotlin!
 
+## I'm new to kotlin and don't know a lot of java. What do I do?
 To get started with learning kotlin, 
 [read the official documentation here](https://kotlinlang.org/docs/home.html).
 
-### Here is a quick guide of the differences with kotlin and java:
+It is recommended to read the "Basic Syntax" page under the "Basics" category
+and everything in the "Concepts" page up until "This expressions".
 
-| Task                | Kotlin                                                  | Java                                                     |
-|---------------------|---------------------------------------------------------|----------------------------------------------------------|
-| Printing Output     | ```println(output)```                                   | ```System.out.println(value);```                         |
-| Primitive Types     | ```Int, Double, ...``` - can be used in arrays themself | ```int, double``` - must use "Integer, Double" in arrays |
-| Constants           | ```val x: optional_type = value```                      | ```final type x = value;```                              |
-| Variables           | ```var x: optional_type = value```                      | ```type x = value;```                                    |
-| Functions           | ```fun name(parameters): optional_type{...}```          | ```type name(){...}```                                   |
-| Class Constructors  | ```public constructor(){}```                            | ```public ClassName(){}```                               | 
-| Class Instantiation | ```val x = ClassName()```                               | ```ClassName x = new ClassName();```                     | 
-| Switch Statements   | "when" statement                                        | "switch case" statement                                  |
-| "Anything" Type     | ```Any```                                               | ```Object```                                             |
+Finally, make sure to check out the "General Programming things you might not have learned yet" section.
+
+## I'm bad at kotlin but good at java. What do I do?
+Here is a quick guide to switch to kotlin from java.
+
+| Task                    | Kotlin                                                   | Java                                                   |
+|-------------------------|----------------------------------------------------------|--------------------------------------------------------|
+| Printing Output         | ```println(output)```                                    | ```System.out.println(value);```                       |
+| Primitive Types         | ```Int, Double, ...``` - can be used in arrays           | ```int, double``` - must use Integer & Double in Lists |
+| Constants               | ```val x: optional_type = value```                       | ```final type x = value;```                            |
+| Variables               | ```var x: optional_type = value```                       | ```type x = value;```                                  |
+| Functions               | ```fun name(p1: type): type{...}  ```                    | ```type name(){...}```                                 |
+| Class Constructors      | ```constructor(){}```                                    | ```public ClassName(){}```                             | 
+| Class Instantiation     | ```val x = ClassName()```                                | ```ClassName x = new ClassName();```                   | 
+| Switch Statements       | ["when" statement](https://www.baeldung.com/kotlin/when) | "switch case" statement                                |
+| "Anything" Type         | ```Any```                                                | ```Object```                                           |
+| Extending other classes | ```class Child: Parent & constructor(p1, p2): super()``` | ```class Child extends Parent & super() method call``` |
 
 Most other things, such as if statements, class definitions, and return statements, 
 are identical. Kotlin also doesn't require semicolons at the end of statements.
 
-## Kotlin Features that aren't in java
+Additional note: Things are public in kotlin by default. This means that you can exclude
+the 'public' keyword from kotlin by default.
+```
+class A: B {
+    private val b: Double
+    constructor(a: Double, b: Double): super(a, b){
+        this.b = b
+    }
+    
+    fun noReturnType(anything: Any){ ... }
+    fun withReturnType(): Double {
+        return 2.0
+    }
+}
+```
+
+### Kotlin Features that aren't in java
 
 ### [Extension methods: ](https://kotlinlang.org/docs/extensions.html)
 You can "extend" a class with new methods, like so:
@@ -40,6 +64,36 @@ You can "extend" a class with new methods, like so:
 ```
 If you import this function in another file(intelliJ will automatically give you the option),
 you can call it like any other method of the class.
+
+### [.apply and .also](https://kotlinlang.org/docs/scope-functions.html#also)
+There are 2 extension methods that can be used on all classes/values: the ```apply``` 
+and ```also``` methods.
+
+Let's say you have a class, called ```AClass```, that has the methods ```configureX()``` and
+```configureY```. Now, you want to create an ```AClass``` instance, call both methods,
+and pass into another method(called ```accept(AClass)``).
+
+You could do this:
+
+```
+val instance = AClass()
+instance.configureX()
+instance.configureY()
+accept(instance)
+```
+
+However, if you don't want to define a dummy variable, you can use ```also```:
+```
+accept(
+    AClass().also {
+        it.configureX()
+        it.configureY()
+    }
+)
+```
+
+Apply does the same thing; however, the method call treats the parameter as ```this```
+instead(essentially like calling the block within the class definition body).
 
 ### [Null]()
 You might have heard of ```null```, which is the value that stands for nothing.
@@ -74,6 +128,7 @@ Just use the "operator" keyword for any method.
     val bye = Example()
     
     val hibye = hi + bye // will call the plus() function
+    val hiResult: Int = hi() // will call the invoke function
 ```
 
 ### [Property getters/setters: ](https://kotlinlang.org/docs/properties.html#getters-and-setters)
@@ -95,11 +150,35 @@ you can make a certain block of code be called when you get or set a variable's 
     value.hello = 5 // this will print 5
 ```
 
-### [Alternate constructor definition](https://kotlinlang.org/docs/classes.html)
+### [Primary constructors](https://kotlinlang.org/docs/classes.html)
 
-## General Programming things you haven't learned yet
+Kotlin has a concept of a "primary constructor", which is really just an alternate(shorter) 
+way of writing a constructor. You should try and use primary constructors when possible, as they are a lot cleaner
+than the regular constructor syntax.
 
-Note: if you are an experienced programmer, you can probably skip this section.
+Here is an example:
+```
+class NoPrimaryConstructorObject: Parent {
+    private val p1: Double
+    constructor(p1: Double, p2: Double): super(p1, p2) {
+        this.p1 = p1
+        println("hi!")
+    }
+}
+
+class WithPrimaryConstructorObject(
+    p1: Double, 
+    private val p2: Double // a private property that has its value set to a constructor parameter
+): Parent(p1, p2) { 
+    init {
+        println("hi!")
+    }
+}
+```
+
+## General Programming things you might not have learned yet
+
+Note: if you are a really experienced programmer, you can probably skip this section.
 If not, this will likely be a good read.
 
 ### [Generics](https://kotlinlang.org/docs/generics.html)
@@ -164,42 +243,62 @@ interface Hello {
 In kotlin(and in java to a certain extent), you can pass in functions as parameters
 to other functions/classes. 
 
-In both versions, you would use ```::functionName``` to do this. 
-You can also define an function inline, like this:
+To do this, a function is represented as an object with only 1 method. These are called 
+"function objects".
 
+#### Instantiating function objects
+
+There are 2 ways to obtain a function object:
+
+1. Creating one from an existing function, using the ```::``` operator. 
+```
+// identical kotlin/java syntax(aside from the variable definition)
+val a = myClassInstance::myMethod
+
+val b = ::myIsolatedFunction
+```
+2. Lambda functions: this is basically a fancy way to say "anonymous function". 
 ```
 // kotlin
-{a: Double, b: Double -> a + b}
+val x = {a, b -> a + b}
+val x = {a: Double, b: Double -> a + b}
 // java
-(double a, double b) => { return a + b; }
+BiFunction<Double, Double, Double> x = (a, b) -> a + b;
+BiConsumer<Double, Double> x = (double a, double b) -> System.out.println(a+b);
 ```
-These functions are called "lambda functions".
 
-In kotlin, you define a variable that accepts a function with the syntax 
-```(TypeA, TypeB) -> ReturnType``` or ```(TypeA, TypeB) => Unit``` for 
-functions that dont return anything.
+#### Types of function objects
 
-In java, you use ```Function<InputType, ReturnType>, BiFunction<...>, ...```, 
-```Supplier<ReturnType```and ```Consumer<InputType>, BiConsumer<...>, ...```.
+In kotlin, function object types are represented with the type "(Arguments) -> ReturnType".
+If a function does not return anything, use "Unit" instead.
 
-In kotlin, you can also use an external "block" to represent a lambda
-if it is the last argument of a class or function. For instance:
+For instance, ```() -> Unit``` is a function that accepts nothing and returns nothing.
+```(Int, Int) -> Int``` is a function that accepts 2 Ints and returns an Int.
 
+In kotlin, function objects are callable the same way a function is called.
+```
+fun higherOrderFun(input: (Double) -> Unit){
+    input(2.0)
+    input(3.0)
+    input(4.0)
+}
+```
+
+Java has a more complex way of doing things(ask Daniel if you're interested).
+
+Finally, a lambda expression can be moved "outside" of it's enclosing function
+if it is the last parameter in the respective higher order function.
 ``` 
-fun hello(a: () -> Unit){
-    a()
+fun hello(a: Int, b: () -> Unit){
+    b()
 }
 
-// both of these are valid
-hello({ println("hi") })
-hello { 
+// both of these do the same thing
+hello(2, { println("hi") })
+hello(2) { 
     println("hi") 
 }
 ```
-
-You may also come across [Inline Functions](https://kotlinlang.org/docs/inline-functions.html)
-in our codebase. Don't worry about them for now; just treat them like
-regular functions.
 
 ### Singletons
 

@@ -21,7 +21,7 @@ val armCommand: Command = buildCommand(name = "ArmCommand", log = true) {
         println("Command started!") // This will run once every time the command is scheduled
     }
     
-    loopFor(5.seconds) {
+    loopForDuration(5) {
         motor.appliedVoltage = 5.volts // A motor will be set to 5V for 5 seconds
         drivetrain.drive()
     }
@@ -30,10 +30,10 @@ val armCommand: Command = buildCommand(name = "ArmCommand", log = true) {
         runSequentially {
             runOnce{ println("hi!") }
             
-            loopFor(5.seconds){ println("bye!") }
+            loopForDuration(5){ println("bye!") }
         }
         
-        waitFor(5.seconds)
+        wait(5)
     }
     
     loop{

@@ -1,4 +1,4 @@
-# Software Documentation
+# Getting Started
 
 Welcome to FRC 5160's software docs! 
 Here, you get to learn the fundamentals for robot code, deployment, and more!
@@ -11,4 +11,10 @@ Here, you get to learn the fundamentals for robot code, deployment, and more!
 - ChargerLib - A set of (optional) utilities to improve robot code
 - And vendor libraries for FRC, such as Phoenix 6, REVLib and more!
 
-Click on the other pages here to get started!
+Here is the recommended reading order of the pages below:
+
+1. Basic Knowledge
+2. Controlling Hardware
+3. Command based programming
+
+Currently, the other pages are a WIP.

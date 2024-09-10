@@ -18,6 +18,9 @@ A window should pop up with the name "Run/Debug Configurations".
 3. Click "Add New Run Configuration", then "gradle". In the textbox, type
 "deployroborio". Then, click Ok.  
 ![Step 3 Image](assets/deploying-robot-code/step-3.png)
+4. This will add the "deployroborio" task, which will deploy robot code when connected to wifi.
+5. Optionally, do the same steps as above, but with "simulateJava" in the textbox instead. This
+   task now allows you to simulate the robot code on your computer.
 
 To deploy robot code, simply connect to the robot's wifi on your computer,
 and hit the run button. That's it!

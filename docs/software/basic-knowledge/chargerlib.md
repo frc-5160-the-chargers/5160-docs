@@ -20,8 +20,3 @@ The overall purpose of chargerlib is to provide optional components that make ro
 
 Besides of the use of the ChargerRobot class, everything within ChargerLib is entirely optional to use;
 in fact, it is recommended that newer coders use base java features if they have just learned the basics of robot code.
-
-### How Do I learn more?
-
-To learn more, view the other README files listed below. They can be read in any order; 
-however, reading them in alphabetical order(A, then B, then C, etc.) is the recommended path.

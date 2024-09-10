@@ -1,6 +1,7 @@
 # ChargerRobot
 
-```ChargerRobot``` is the quintissential base class for differnet types of robots.
+```ChargerRobot``` is the quintessential base class for robots
+built using ChargerLib.
 
 For every type of "Robot" that a codebase has, you would create a class
 that extends ```ChargerRobot```, like so:
@@ -51,3 +52,32 @@ class Robot: ChargerRobot() {
         super.robotPeriodic() // You MUST call this, or things will break
     }
 ```
+
+### Adding periodic callbacks using ChargerRobot
+
+The ```ChargerRobot``` class gives users the unique ability to add periodic callbacks
+wherever they want in their code.
+
+There are 3 ways to add periodic callbacks:
+
+```
+fun addCallbacks(){
+    ChargerRobot.runPeriodic {
+        // this block of code will run periodically
+        // before the command scheduler
+    }
+    
+    ChargerRobot.runPeriodicWithLowPriority {
+        // this block of code will run periodically
+        // after the command scheduler
+    }
+    
+    ChargerRobot.runPeriodicAtPeriod(0.01.seconds) {
+        // This block of code will run periodically
+        // at the specified period.
+        // This allows for code to run at a higher frequency than then normal loop.
+    }
+}
+```
+
+
