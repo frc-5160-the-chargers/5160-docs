@@ -30,7 +30,8 @@ Here is a quick guide to switch to kotlin from java.
 | Class Instantiation     | ```val x = ClassName()```                                | ```ClassName x = new ClassName();```                   | 
 | Switch Statements       | ["when" statement](https://www.baeldung.com/kotlin/when) | "switch case" statement                                |
 | "Anything" Type         | ```Any```                                                | ```Object```                                           |
-| Extending other classes | ```class Child: Parent & constructor(p1, p2): super()``` | ```class Child extends Parent & super() method call``` |
+| Extending other classes | ```class Child: Parent & constructor(p1, p2): super()``` | ```class Child extends Parent & super()```             |
+| Overriding methods      | ```override fun overridenFunction(){ ... }```            | ```@Override public void method(){ ... }```            |
 
 Most other things, such as if statements, class definitions, and return statements, 
 are identical. Kotlin also doesn't require semicolons at the end of statements.
@@ -51,7 +52,11 @@ class A: B {
 }
 ```
 
-### Kotlin Features that aren't in java
+## Kotlin Features that aren't in java
+
+### Overriding properties
+In kotlin, you can define abstract properties in interfaces/abstract classes and have other classes "override" 
+these properties. 
 
 ### [Extension methods: ](https://kotlinlang.org/docs/extensions.html)
 You can "extend" a class with new methods, like so:
@@ -178,8 +183,8 @@ class WithPrimaryConstructorObject(
 
 ## General Programming things you might not have learned yet
 
-Note: if you are a really experienced programmer, you can probably skip this section.
-If not, this will likely be a good read.
+Note: if you are a really experienced programmer, you should take a quick look
+over this section to understand how these work in kotlin. If not, read this section carefully.
 
 ### [Generics](https://kotlinlang.org/docs/generics.html)
 
@@ -209,34 +214,41 @@ without actually providing an implementation of them. These "unimplemented"
 functions are called "abstract methods" and "abstract properties". 
 Interfaces may also optionally have regular methods as well.
 
-In return, the compiler forces classes which extend/implement these interface
-to provide their own implementation of each of these functions.
+In return, the compiler forces classes which inherit from these interfaces
+to provide their own implementation of each of these functions. If the class
+does not do so, the compiler will error.
 
 Interfaces cannot store any data/state. This means that Interfaces can have:
-1. Regular Methods
-2. Abstract/Unimplemented Methods
-3. Abstract/Unimplemented properties
-4. Properties with getters and setters(as these are essentially functions)
+1. Regular public methods
+2. Unimplemented Public Methods - these are called abstract methods
+3. Public properties with no value defined - these are called abstract properties
+4. Public properties with getters and setters(as these are essentially functions)
 
-This means that interfaces cannot have regular properties/variables!
+This means that interfaces cannot have regular properties/variables,
+or anything private!
 
 ```
 // This is also how you define an interface in java
 interface Hello {
     // NOT ALLOWED
     val goodbye: Double = 2.0
+    private fun test(){ ... }
 
     // allowed
     val goodbye: Double get() = 2.0
-   
     fun hello(a: Double)
-    
     fun helloTwoTimes(a: Double){
         hello(a)
         hello(a)
     }
 }
 ```
+
+### Abstract Classes
+Abstract classes are a hybrid between an interface and a class. Because they are
+considered a class, they can have regular variables, and can use the 
+private modifier. However, since they are a class, you cannot inherit from multiple
+abstract classes. Overall, it is recommended to use interfaces when you can.
 
 ### [Lambda functions](https://kotlinlang.org/docs/lambdas.html)
 
