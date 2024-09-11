@@ -24,10 +24,7 @@ For instance: ```angleValue.inUnit(radians)```, ```distanceValue.inUnit(meters)`
 In Kmeasure, all values are templated off of the ```Quantity<D: Dimension>``` class. 
 
 This class has only one property: 'siValue', which is the base value of the quantity 
-in the International System of Unit's designated base unit for the class. 
-
-Due to being inline value classes, ```Quantity<D>```'s are represented as Double's as much as 
-possible; this significantly reduces runtime overhead.
+in the International System of Unit's designated base unit for the class.
 
 The Dimension type represents a generic unit/dimension, and is used to distinguish between different ```Quantity```'s. It is represented using 4 components: Mass(M), Length(L), Time(T) and Current(I). For instance:
 ```
@@ -35,8 +32,7 @@ typealias dimensionA =  Dimension<Mass0, Length0, Time1, Current0> // dimension 
 typealias dimensionB =  Dimension<Mass1, LengthN1, Time2, Current1> // represents mass^1 * length^-1 * time^2 * current^1
 ``` 
 Dimension is a sealed class; thus, it can only be passed as a type argument, and cannot be instantiated by itself.
-In order to represent a generic dimension, use ```Dimension<*,*,*,*>``` as a type bound.
-Note: At the moment, the k2 compiler has issues detecting 
+In order to represent a generic dimension, use ```Dimension<*,*,*,*>``` as a type bound. 
 
 There are named typealiases for common dimensions and Quantity's. For instance:
 ```
@@ -50,3 +46,10 @@ val time: Time = Time(0.0)
 // or this: (TimeDimension
 val time: Quantity<TimeDimension> = Quantity(0.0)
 ```
+
+### Why is Quantity<D> faster than the wpilib units library?
+The Quantity class is an example of an inline value class. An inline value class
+stores a singular property(here, it is siValue), and the kotlin runtime
+treats the class as if it were actually the property's value instead of an object.
+This allows them to be more performant than other classes, at the cost
+of only being able to store a singular value. 
