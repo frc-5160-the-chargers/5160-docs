@@ -56,7 +56,22 @@ class A: B {
 
 ### Overriding properties
 In kotlin, you can define abstract properties in interfaces/abstract classes and have other classes "override" 
-these properties. 
+these properties. In java, you can only do this with methods.
+
+### List<T> and MutableList<T>
+
+While java has a singular class(ArrayList<T>) for modern multi-value storage,
+kotlin has 2 different types: List<T> and MutableList<T>. They can be made using the
+mutableListOf(elements) and listOf(elements) methods.
+
+Note: kotlin has arrays, but there's no reason to use them over lists.
+```
+val list = listOf(1,2,3)
+val mutableList = mutableListOf(2,3,4)
+val listAsMutable = list.toMutableList()
+val item = list[0]
+```
+Lists and MutableLists uses java's array access brackets.
 
 ### [Extension methods: ](https://kotlinlang.org/docs/extensions.html)
 You can "extend" a class with new methods, like so:
