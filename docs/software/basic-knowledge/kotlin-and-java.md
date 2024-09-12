@@ -64,12 +64,19 @@ While java has a singular class(ArrayList<T>) for modern multi-value storage,
 kotlin has 2 different types: List<T> and MutableList<T>. They can be made using the
 mutableListOf(elements) and listOf(elements) methods.
 
+While a MutableList<T> can change the values of items and add new items,
+List<T> cannot. In general, use List<T> unless if you need to add items or change their value.
+
 Note: kotlin has arrays, but there's no reason to use them over lists.
 ```
-val list = listOf(1,2,3)
-val mutableList = mutableListOf(2,3,4)
+val list: List<Int> = listOf(1,2,3)
+val mutableList: MutableList<Int> = mutableListOf(2,3,4)
 val listAsMutable = list.toMutableList()
 val item = list[0]
+
+mutableList[0] = 12345 // resets the first element to 12345
+list[0] = 33 // WILL ERROR
+mutableList.add(6654)
 ```
 Lists and MutableLists uses java's array access brackets.
 
