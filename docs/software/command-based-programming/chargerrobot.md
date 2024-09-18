@@ -13,8 +13,8 @@ class CompetitionBot: ChargerRobot() {
 ```
 
 ChargerRobot extends WPILib's [TimedRobot](https://docs.wpilib.org/en/stable/docs/software/vscode-overview/creating-robot-program.html)
-class; however, it adds a couple of extra ChargerLib-related features,
-such as automatic logging setup and adding periodic loops.
+class; however, it allows code to be run periodically without being in the robot class
+itself. Thus, it is required for your robot class to extend ChargerRobot instead of TimedRobot. 
 
 ### Differences from traditional command-based
 In traditional WPILib, the main class is split into the "Robot" class 
@@ -75,7 +75,7 @@ fun addCallbacks(){
     ChargerRobot.runPeriodicAtPeriod(0.01.seconds) {
         // This block of code will run periodically
         // at the specified period.
-        // This allows for code to run at a higher frequency than then normal loop.
+        // This allows for code to run at a higher(or lower rate) than then normal loop.
     }
 }
 ```

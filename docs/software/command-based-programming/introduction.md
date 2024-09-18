@@ -1,4 +1,4 @@
-# Intro to Command-Based Programming
+_# Intro to Command-Based Programming
 
 Command-based programming is the most popular programming framework for FRC teams
 due to it's ease of use and simplicity. 
@@ -16,4 +16,23 @@ Here is the gist of it:
 (ScoreHighCone, ShootInSpeaker, FollowPlottedPath).
 3. A ```Trigger``` is used to activate a ```Command``` when a certain condition or
 condition(s) return true. This can be from a button press, a sensor reading change,
-and so on.
+and so on._
+
+### Trigger syntax
+
+Due to external lambda syntax, you can create Triggers in a much cleaner way, like so:
+```
+// java syntax
+Trigger(() -> condition()).whileTrue(...);
+// kotlin syntax
+Trigger{ condition() }.whileTrue(...)
+```
+
+### Subystem and Command syntax
+
+Because ```SubsystemBase``` and ```Command``` are abstract classes, 
+you must invoke the constructor itself like so:
+```
+class Elevator: SubsystemBase() { ... }
+class SubclassedCommand: Command() { ... }
+```
