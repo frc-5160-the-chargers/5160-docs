@@ -36,6 +36,8 @@ Here is a quick guide to switch to kotlin from java.
 Most other things, such as if statements, class definitions, and return statements, 
 are identical. Kotlin also doesn't require semicolons at the end of statements.
 
+Kotlin's "static methods" are explained in the "objects and companion objects" section.
+
 Additional note: Things are public in kotlin by default. This means that you can exclude
 the 'public' keyword from kotlin by default.
 ```
@@ -202,6 +204,25 @@ class WithPrimaryConstructorObject(
     }
 }
 ```
+
+### [Data classes](https://kotlinlang.org/docs/data-classes.html)
+
+A data class is a special class that automatically generates a toString(), equals(), and more.
+
+For less experienced programmers:
+Every object has a toString() method that can convert the object instance to a string. 
+For most classes, this just returns a hash, or a key that 
+represents the object(which often isn't too useful). However, for data class, the toString()
+method actually gives useful information(such as the values of each property). 
+
+The equals() method accepts one other value and checks if the value itself is the same.
+For most classes, they simply compare whether or not the instance itself is identical;
+this means that 2 classes with the same values will NOT be equal. On the other hand,
+with data classes, if 2 classes have the same values, then they will be equal.
+
+### Objects and Companion Objects
+
+For how to create static methods and the like, read [here](https://kotlinlang.org/docs/object-declarations.html#object-declarations-overview).
 
 ## General Programming things you might not have learned yet
 

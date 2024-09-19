@@ -53,8 +53,23 @@ Here is a full list of all configurable parameters:
 - ```ChargerSparkMax(id)``` - Corresponds to Neo Motors(base class is CANSparkMax)
 - ```ChargerSparkFlex(id)``` - Corresponds to Neo Vortex Motors(base class is CANSparkFlex)
 - ```ChargerTalonFX(id)``` - Corresponds to Kraken/Falcon Motors(base class is TalonFX)
-- ```MotorSim(...)``` - Simulates a Regular Motor(base class is DCMotorSim)
-```ArmMotorSim(...)``` - Simulates a motor around a single jointed arm(base class is SingleJointedArmSim)
-- ```ElevatorMotorSim(...)``` - Simulates a motor controlling an elevator(base class is ElevatorSim)
+- ```MotorSim(DCMotor)``` - Simulates a Regular Motor(base class is DCMotorSim)
+- ```ArmMotorSim(DCMotor, length)``` - Simulates a motor around a single jointed arm(base class is SingleJointedArmSim)
+- ```ElevatorMotorSim(DCMotor, carriageMass)``` - Simulates a motor controlling an elevator(base class is ElevatorSim)
 
 All of these classes implement ```Motor```, and can be used when desired.
+
+### Motor Sim definition
+
+All motor sims require a ```DCMotor``` parameter, which name might be a bit misleading.
+A ```DCMotor``` class instance is NOT the motor itself; rather, it is a class
+representing a set of constants related to one or a group of motors.
+
+For instance, you would use ```DCMotor.getNEO(1)``` to represent a singular neo motor's
+constants. To simulate/represent multiple motors in one simulated motor, 
+you would use ```DCMotor.getKrakenX60(2)```or ```DCMotor.getNeoVortex(3)```.
+
+```
+val motor1: Motor = MotorSim(DCMotor.getNeoVortex(1))
+val armJointMotors: Motor = ArmMotorSim(DCMotor.getFalcon500(2), 0.5.meters)
+```

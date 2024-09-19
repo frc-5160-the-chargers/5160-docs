@@ -28,7 +28,7 @@ Trigger(() -> condition()).whileTrue(...);
 Trigger{ condition() }.whileTrue(...)
 ```
 
-### Subystem and Command syntax
+### Subsystem and Command syntax
 
 Because ```SubsystemBase``` and ```Command``` are abstract classes, 
 you must invoke the constructor itself like so:
@@ -36,3 +36,16 @@ you must invoke the constructor itself like so:
 class Elevator: SubsystemBase() { ... }
 class SubclassedCommand: Command() { ... }
 ```
+
+# IMPORTANT: .ignoringDisable()
+
+A lot of command pitfalls can come from not calling the Command.ignoringDisable(true)
+method to allow a command to run when disabled.
+
+For default commands and commands that activate on a button press, you don't want
+ignoringDisable to be true. However, you might choose to schedule a command in the 
+constructor/init block of a class, and if you don't use the ignoringDisable(true)
+option, that command will not run. 
+
+In general, think very carefully about whether or not your command should run
+when the robot is disabled or not.
