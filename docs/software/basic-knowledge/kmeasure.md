@@ -18,6 +18,26 @@ import these units for you. Alternatively, you can also use ```4.ofUnit(inches)`
 3. In order to convert any "unit" value to a ```double```, use the ```inUnit``` function.
 For instance: ```angleValue.inUnit(radians)```, ```distanceValue.inUnit(meters)```.
 
+### Common functions
+
+Kmeasure Quantities support multiplication and division just like 
+Doubles/floating point numbers do. In addition, they support abs()
+and such.
+
+```  
+val velocity = 1.meters / 0.3.seconds
+val area = 20.meters * 1.inches
+val moreVoltage = 5.volts + 3.volts
+val lessTime = 5.minutes - 3.seconds
+val absoluteValue = abs(-5.meters)
+```
+
+NOTE: You have to manually import the multiplication and division functions
+for kmeasure Quantities. To do so, simply add the ```import com.batterystaple.kmeasure.quantities.*```
+to the other import statements in your file.
+
+In addition, Kmeasure quantities currently do not support squaring, square roots,
+or any exponentials.
 
 ### Here are some more advanced concepts:
 
