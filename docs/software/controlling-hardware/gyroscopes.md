@@ -15,25 +15,15 @@ A heading provider that can be zeroed is represented using the  ```ZeroableHeadi
 which has the ```zeroHeading(angle: Angle)``` function. When called without a specified angle, 
 this function will set the angle to 0 degrees.
 
-In addition, there are the ```ThreeAxisGyroscope```, ```ThreeAxisAccelerometer``` and ```ThreeAxisSpeedometer``` classes, 
-which measure angle, acceleration and velocity, respectively, in all 3 axes. For instance:
+In addition, the ChargerNavX and ChargerPigeon2 return the linear accelerations and roll,
+pitch, and yaw of the gyro itself.
 
 ```
 val navX = ChargerNavX()
-val gyroscope: ThreeAxisGyroscope = navX.gyroscope
-
-println(gyroscope.yaw + gyroscope.pitch + gyroscope.roll) // Angle
-
-val accelerometer: ThreeAxisAccelerometer = navX.accelerometer
-
-println(accelerometer.xAcceleration + accelerometer.yAcceleration + ...) // Acceleration
-
-val speedometer: ThreeAxisSpeedometer = navX.speedometer
-
-println(accelerometer.xVelocity + accelerometer.yVelocity + ...) // Velocity
+println(navX.yaw + navX.pitch + navX.roll) // Angle
+println(navX.yawRate) // note: the navX does not support pitchRate and rollRate(the Pigeon2 does)
+println(navX.xAcceleration + navX.yAcceleration + ...) // Acceleration
 ```
-
-These interfaces are usually subclassed properties of overarching IMU classes.
 
 HeadingProvider implementing classes: 
 - drivetrain subsystems
