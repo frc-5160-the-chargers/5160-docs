@@ -1,8 +1,8 @@
 # Motors and Motor Controllers
 
 A motor is a device that causes something to rotate when supplied with 
-electrical power. A motor controller is an electrical cicuit that helps
-a motor to regulate the voltage going into it (thus acheiving varying speeds).
+electrical power. A motor controller is an electrical circuit that helps
+a motor to regulate the voltage going into it (thus achieving varying speeds).
 
 ## Using Motors in software
 The ```Motor``` interface provides standard functions and properties to control a modern 
@@ -10,10 +10,10 @@ motor controller. For instance:
 
 - To fetch the built-in encoder of a motor, use the ```motor.encoder``` property.
 - To read a motor's current output, use ```motor.statorCurrent```.
-- Call ```motor.appliedVoltage``` to read the voltage, and ```motor.appliedVoltage = 5.0.volts```
+- Call ```val v = motor.voltageOut``` to read the voltage, and ```motor.voltageOut = 5.0.volts```
 to set desired voltage.
-- Optionally, you can use ```motor.percentOut = 0.5``` to set power to the motor as a percentage
-of it's available power.
+- Optionally, you can use ```motor.speed = 0.5``` to set power to the motor as a percentage
+of its available power.
 - To know whether the motor is inverted, use the ```motor.inverted``` boolean getter.
 
 ### Configuring motors
@@ -30,10 +30,14 @@ To configure a motor, the  ```configure``` method of a motor is used. Every sing
 but should be used as a named parameter. 
 ```configure``` also returns the motor itself so that method calls can be chained.
 ```
-motor.configure(inverted = true, rampRate = 45.seconds)
-val motor = ChargerSparkMax(6)
-                .configure(gearRatio = 96.0, brakeWhenIdle = false)
-                .configure(followers = listOf(ChargerSparkMax(5), ChargerTalonFX(3))) // these motors will now spin when the initial motor spins
+class Arm {
+    val motor = ChargerSparkMax(6)
+        .configure(gearRatio = 96.0, brakeWhenIdle = false)
+        .configure(followers = listOf(ChargerSparkMax(5), ChargerTalonFX(3))) // these motors will now spin when the initial motor spins
+    init {
+        motor.configure(inverted = true, rampRate = 45.seconds)
+    }
+}
 ```
 
 Here is a full list of all configurable parameters:
