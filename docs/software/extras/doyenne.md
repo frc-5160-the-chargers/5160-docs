@@ -2,6 +2,11 @@
 
 If you're brianna, milena or avani and are reading this guide, you are in the right place!
 
+# Opening the robot project
+
+There's a good chance that the code is already open.
+If it's not, just open IntelliJ(and select FRC2024 from the list of project options).
+
 # Pulling from github
 
 Right now, just use the driver station computer for all github tasks.
